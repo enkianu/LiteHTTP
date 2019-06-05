@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LiteHTTP")]
-[assembly: AssemblyDescription("LiteHTTP")]
+[assembly: AssemblyTitle("displaydriver")]
+[assembly: AssemblyDescription("displaydriver")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Zettabit")]
-[assembly: AssemblyProduct("LiteHTTP")]
-[assembly: AssemblyCopyright("Copyright © Zettabit 2015")]
+[assembly: AssemblyCompany("Nvidia")]
+[assembly: AssemblyProduct("displaydriver")]
+[assembly: AssemblyCopyright("Copyright © Nvidia 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f99c0612-2741-4b86-9bd1-82787c946431")]
+//[assembly: Guid("f99c0612-2741-4b86-9bd1-82787c946431")]
 
 // Version information for an assembly consists of the following four values:
 //

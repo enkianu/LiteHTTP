@@ -1,0 +1,17 @@
+D:\LiteHTTP-master\BuilderNew\Bot\LiteHTTP\bin\Debug\Payload.exe
+D:\LiteHTTP-master\BuilderNew\Bot\LiteHTTP\bin\Debug\Payload.pdb
+D:\LiteHTTP-master\BuilderNew\Bot\LiteHTTP\obj\Debug\Payload.csproj.CoreCompileInputs.cache
+D:\LiteHTTP-master\BuilderNew\Bot\LiteHTTP\obj\Debug\Payload.exe
+D:\LiteHTTP-master\BuilderNew\Bot\LiteHTTP\obj\Debug\Payload.pdb
+D:\LiteHTTP-master\BuilderNew\Bot\LiteHTTP\obj\Debug\Payload.csprojAssemblyReference.cache
+D:\DarkRat\Bot\LiteHTTP\bin\Debug\Payload.exe
+D:\DarkRat\Bot\LiteHTTP\bin\Debug\Payload.pdb
+D:\DarkRat\Bot\LiteHTTP\obj\Debug\Payload.csproj.CoreCompileInputs.cache
+D:\DarkRat\Bot\LiteHTTP\obj\Debug\Payload.exe
+D:\DarkRat\Bot\LiteHTTP\obj\Debug\Payload.pdb
+E:\DarkRat\Bot\LiteHTTP\bin\Debug\Payload.exe
+E:\DarkRat\Bot\LiteHTTP\bin\Debug\Payload.pdb
+E:\DarkRat\Bot\LiteHTTP\obj\Debug\Payload.csproj.CoreCompileInputs.cache
+E:\DarkRat\Bot\LiteHTTP\obj\Debug\Payload.exe
+E:\DarkRat\Bot\LiteHTTP\obj\Debug\Payload.pdb
+E:\DarkRat\Bot\LiteHTTP\obj\Debug\Payload.csprojAssemblyReference.cache

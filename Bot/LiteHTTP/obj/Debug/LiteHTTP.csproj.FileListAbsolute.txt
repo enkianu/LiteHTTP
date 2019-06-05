@@ -1,0 +1,6 @@
+D:\LiteHTTP-master\Bot\LiteHTTP\bin\Debug\LiteHTTP.exe
+D:\LiteHTTP-master\Bot\LiteHTTP\bin\Debug\LiteHTTP.pdb
+D:\LiteHTTP-master\Bot\LiteHTTP\obj\Debug\LiteHTTP.csproj.CoreCompileInputs.cache
+D:\LiteHTTP-master\Bot\LiteHTTP\obj\Debug\LiteHTTP.exe
+D:\LiteHTTP-master\Bot\LiteHTTP\obj\Debug\LiteHTTP.pdb
+D:\LiteHTTP-master\Bot\LiteHTTP\obj\Debug\LiteHTTP.csprojAssemblyReference.cache

@@ -1,0 +1,234 @@
+div#tbf_index-worldmap-container {
+    position: relative;
+  }
+  
+  div.overlay {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #282828;
+    z-index: 99;
+  }
+  
+  div.overlay.o-1 {
+    bottom: 80px;
+    left: 800px;
+  }
+  
+  div.overlay.o-2 {
+    bottom: 80px;
+    left: 840px;
+  }
+  
+  
+  
+  .tip {
+      font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+      color: #999;
+      font-size: 14px;
+      width: 212px;
+      padding-top: 25px;
+      overflow: hidden;
+      display: none;
+      position: absolute;
+      z-index: 500;
+      background: transparent url(images/tipTop.png) no-repeat top;}
+      
+  .tipMid {
+      background: transparent url(images/tipMid.png) repeat-y; 
+      padding: 0 15px 5px 25px;
+  }
+  
+  .tipBtm {
+      background: transparent url(images/tipBtm.png) no-repeat bottom; 
+      height: 27px;
+  }
+  
+  .zoomLevelWrap
+  {
+      padding-top: 2px;
+      position: absolute;
+      width: 151px; 
+      height: 24px;
+      z-index: 410;
+      top: 14px;
+      right: 72px;
+      display: none;
+  }
+  
+  .zoomLevelWrap .zoombox
+  {
+      background-color: #fff;
+      width: 8px; 
+      height: 23px;
+      border:1px solid #9bb6c9;
+      display:inline;
+      margin-right:10px;
+      padding-bottom:4px;
+      padding-right:13px;
+      *display:block !important;
+      *float:left;
+      *margin-right:8px !important;
+      *width: 2px !important;	
+      *height: 16px !important;
+  }
+  
+  .zoomLevelWrap .active
+  {
+      background-color: #4b7da0;
+      border:1px solid #4b7da0;
+  }
+  
+  .countryZoom
+  {
+      position: absolute;
+      background-image:url('images/zoom-button.png');
+      background-repeat: none;
+      width: 24px; 
+      height: 24px;
+      z-index: 300;
+      display: none;
+  }
+  
+  .countryZoomOut
+  {
+      position: absolute;
+      background-image:url('images/zoom-out.png');
+      background-repeat: none;
+      width: 132px; 
+      height: 24px;
+      z-index: 300;
+      display: none;
+  }
+  
+  /*zoom in*/
+  .countryZoom[data-countryZoom="na"]
+  {
+      top: 140px;
+      left: 140px;
+  }
+  
+  .countryZoom[data-countryZoom="sa"]
+  {
+      top: 380px;
+      left: 330px;
+  }
+  
+  .countryZoom[data-countryZoom="eu"]
+  {
+      top: 110px;
+      left: 425px;
+  }
+  
+  .countryZoom[data-countryZoom="af"]
+  {
+      top: 260px;
+      left: 570px;
+  }
+  
+  .countryZoom[data-countryZoom="as"]
+  {
+      top: 220px;
+      left: 740px;
+  }
+  
+  
+  /*zoom out*/
+  
+  .countryZoomOut[data-countryZoomOut="out"]
+  {
+      top: 20px;
+      left: 140px;
+  }
+  
+  .zoom-bg
+  {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 34px;
+      z-index: 1;
+  
+      /**z-index: 301;*/
+  
+  } 
+   
+  .legend
+  {
+      position: absolute;
+      background-image:url('images/legend.gif');
+      background-repeat: no-repeat;
+      top: 267px;
+      left: 10px;
+      width: 190px; 
+      height: 200px;
+      z-index: 100;
+      -moz-box-shadow:    4px 4px 10px -6px #888;
+        -webkit-box-shadow: 4px 4px 10px -6px #888;
+      box-shadow:         4px 4px 10px -6px #888;
+  } 
+  .shell
+  {
+       /*-webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;*/
+      background: #d9e0ea;
+  }
+  
+  .jqvmap-label
+  {
+      position: absolute;
+      display: none;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+      background: #fff;
+      color: #999;
+      font-family: sans-serif, Helvetica;
+      font-size: 2em;
+      padding: 6px;
+      z-index: 500;
+      -moz-box-shadow:    4px 4px 10px -6px #888;
+        -webkit-box-shadow: 4px 4px 10px -6px #888;
+      box-shadow:         4px 4px 10px -6px #888;
+  }
+  .jqvmap-zoomin, .jqvmap-zoomout{
+      cursor: pointer;
+      background: #fbfbfb;
+      margin-bottom: 10px;
+      text-align: center;
+      color: #1b6293;
+      font-weight: bold;
+      line-height: 1.3em;
+      font-size: 1.5em;
+  
+      -moz-box-shadow:    4px 4px 10px -6px #888;
+      -webkit-box-shadow: 4px 4px 10px -6px #888;
+      box-shadow:         4px 4px 10px -6px #888;
+  
+  }
+  .jqvmap-zoomin:hover, .jqvmap-zoomout:hover{ background: #1b6293; color: #fbfbfb; }
+  
+  .jqvmap-zoomin
+  {
+  
+  }
+  .jqvmap-zoomout
+  {
+  }
+  .jqvmap-region
+  {
+      position: absolute;
+      cursor: pointer;
+    
+  }
+  .jqvmap-ajax_response
+  {
+      width: 100%;
+      height: 500px;
+  }
+  
+  #tbf_index-worldmap-list .row { border-bottom: 1px solid #ccc; padding-bottom: .5em; margin-bottom: .5em;  }
+  #tbf_index-worldmap-list { width: 90%; margin: 0 auto; }

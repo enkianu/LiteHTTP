@@ -1,0 +1,5 @@
+D:\LiteHTTP-master\Bot\LiteHTTP\bin\Release\LiteHTTP.exe
+D:\LiteHTTP-master\Bot\LiteHTTP\bin\Release\LiteHTTP.pdb
+D:\LiteHTTP-master\Bot\LiteHTTP\obj\Release\LiteHTTP.csproj.CoreCompileInputs.cache
+D:\LiteHTTP-master\Bot\LiteHTTP\obj\Release\LiteHTTP.exe
+D:\LiteHTTP-master\Bot\LiteHTTP\obj\Release\LiteHTTP.pdb
